@@ -24,17 +24,13 @@ export default function Details() {
   return (
     <View className={styles.container}>
       <View className={styles.main}>
-        <Text className={styles.title}>Details</Text>
-        <Text>{session?.user.id}</Text>
-        <Text className={styles.subtitle}>
-          Showing details for user {session?.user.email?.split('@')[0]}.
-        </Text>
+        <LogoutButton />
+        <Text className={styles.title}>Documents</Text>
         {pdfs.map((pdf) => (
-          <Link key={pdf.id} href={`/document/${pdf.name}`}>
+          <Link key={pdf.id} href={`/document/${pdf.name}`} className="text-5xl border p-4">
             {pdf.name}
           </Link>
         ))}
-        <LogoutButton />
       </View>
     </View>
   );

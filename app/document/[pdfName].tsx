@@ -18,12 +18,11 @@ export default function Document() {
     if (!session) return;
 
     loadPdf();
-  }, [session]);
+  }, [session, pdfName]);
 
   const loadPdf = async () => {
-    const { data } = await supabase.storage
-      .from(`documents/${session?.user.id}`)
-      .download('Probate.pdf');
+    if (!pdfName) return;
+    const { data } = await supabase.storage.from(`documents/${session?.user.id}`).download(pdfName);
 
     if (!data) return;
 
