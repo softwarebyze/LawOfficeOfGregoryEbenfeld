@@ -16,7 +16,7 @@ export default function Page() {
 
   return (
     <View className={styles.container}>
-      <Stack.Screen options={{ title: 'Overview' }} redirect={!!session} />
+      <Stack.Screen options={{ title: 'Login' }} redirect={!!session} />
       <View className={styles.main}>
         <LoginForm onSubmit={logIn} />
       </View>
