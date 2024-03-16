@@ -1,20 +1,24 @@
-import { Stack, Link } from 'expo-router';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Stack } from 'expo-router';
+import { View } from 'react-native';
+
+import { LoginForm } from '~/components/LoginForm';
+import { useAuth } from '~/contexts/AuthContext';
+import { supabase } from '~/utils/supabase';
 
 export default function Page() {
+  const logIn = async (lastName: string, ssn: string) =>
+    await supabase.auth.signInWithPassword({
+      email: `${lastName.trim()}@superdeed.com`,
+      password: ssn,
+    });
+
+  const { session } = useAuth();
+
   return (
     <View className={styles.container}>
-      <Stack.Screen options={{ title: 'Overview' }} />
+      <Stack.Screen options={{ title: 'Overview' }} redirect={!!session} />
       <View className={styles.main}>
-        <View>
-          <Text className={styles.title}>Hello World</Text>
-          <Text className={styles.subtitle}>This is the first page of your app.</Text>
-        </View>
-        <Link href={{ pathname: '/details', params: { name: 'Dan' } }} asChild>
-          <TouchableOpacity className={styles.button}>
-            <Text className={styles.buttonText}>Show Details</Text>
-          </TouchableOpacity>
-        </Link>
+        <LoginForm onSubmit={logIn} />
       </View>
     </View>
   );

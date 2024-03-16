@@ -1,26 +1,19 @@
-import { Feather } from '@expo/vector-icons';
-import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, View } from 'react-native';
+
+import { LogoutButton } from '~/components/LogoutButton';
+import { useAuth } from '~/contexts/AuthContext';
 
 export default function Details() {
-  const { name } = useLocalSearchParams();
-  const router = useRouter();
-
-  const BackButton = () => (
-    <TouchableOpacity onPress={router.back}>
-      <View className={styles.backButton}>
-        <Feather name="chevron-left" size={16} color="#007AFF" />
-        <Text className={styles.backButtonText}>Back</Text>
-      </View>
-    </TouchableOpacity>
-  );
+  const { session } = useAuth();
 
   return (
     <View className={styles.container}>
-      <Stack.Screen options={{ title: 'Details', headerLeft: () => <BackButton /> }} />
       <View className={styles.main}>
         <Text className={styles.title}>Details</Text>
-        <Text className={styles.subtitle}>Showing details for user {name}.</Text>
+        <Text className={styles.subtitle}>
+          Showing details for user {session?.user.email?.split('@')[0]}.
+        </Text>
+        <LogoutButton />
       </View>
     </View>
   );
