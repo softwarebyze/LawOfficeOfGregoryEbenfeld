@@ -2,9 +2,9 @@
   "name": "law-office-of-gregory-ebenfeld",
   "version": "1.0.0",
   "scripts": {
-    "android": "expo start --android",
+    "android": "expo run:android",
     "format": "bun run eslint \"**/*.{js,jsx,ts,tsx}\" --fix && prettier \"**/*.{js,jsx,ts,tsx,json}\" --write",
-    "ios": "expo start --ios",
+    "ios": "expo run:ios",
     "start": "expo start",
     "web": "expo start --web"
   },
@@ -18,8 +18,10 @@
     "expo": "~50.0.5",
     "expo-constants": "~15.4.5",
     "expo-dev-client": "~3.3.10",
+    "expo-file-system": "~16.0.8",
     "expo-linking": "~6.2.2",
     "expo-router": "^3.4.6",
+    "expo-sharing": "~11.10.0",
     "expo-status-bar": "~1.11.1",
     "expo-system-ui": "~2.9.3",
     "expo-web-browser": "~12.8.2",
