@@ -1,34 +1,40 @@
+import * as FileSystem from 'expo-file-system';
 import * as Sharing from 'expo-sharing';
-import { Share, Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 
-// async function shareAsync() {
-//     await Share.share(
-//       {
-//         message: `Check out not-crossy-road by @baconbrix`,
-//         url: 'https://crossyroad.netlify.com',
-//         title: 'Not Crossy Road',
-//       },
-//       {
-//         dialogTitle: 'Share Not Crossy Road',
-//         excludedActivityTypes: [
-//           'com.apple.UIKit.activity.AirDrop', // This speeds up showing the share sheet by a lot
-//           'com.apple.UIKit.activity.AddToReadingList', // This is just lame :)
-//         ],
-//         tintColor: Colors.blue,
-//       },
-//     );
-//   }
+const downloadAndSharePdf = async (filename: string, remoteURL: string, blob: Blob) => {
+  const fr = new FileReader();
+  fr.onload = async () => {
+    const fileUri = `${FileSystem.documentDirectory}/${filename}.pdf`;
+    if (typeof fr.result !== 'string') throw new Error('fr.result is not a string');
+    await FileSystem.writeAsStringAsync(fileUri, fr.result.split(',')[1], {
+      encoding: FileSystem.EncodingType.Base64,
+    });
+    Sharing.shareAsync(fileUri);
+  };
+  fr.readAsDataURL(blob);
+};
 
-
-export function ShareButton({ url }: { url: string }) {
+export function ShareButton({
+  filename,
+  url,
+  blob,
+}: {
+  filename: string;
+  url: string;
+  blob: Blob;
+}) {
   const handlePress = async () => {
-    await Sharing.shareAsync(url);
+    try {
+      downloadAndSharePdf(filename, url, blob);
+    } catch (error) {
+      console.error('There was an error sharing the file', error);
+    }
   };
 
   return (
-    <ShareButton url='google.com' />
-    // <TouchableOpacity onPress={handlePress}>
-    //   <Text>Share</Text>
-    // </TouchableOpacity>
+    <TouchableOpacity onPress={handlePress}>
+      <Text>Share</Text>
+    </TouchableOpacity>
   );
 }

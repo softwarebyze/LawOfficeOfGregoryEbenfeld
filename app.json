@@ -4,6 +4,7 @@
     "slug": "LawOfficeOfGregoryEbenfeld",
     "version": "1.0.0",
     "scheme": "lawofficeofgregoryebenfeld",
+    "owner": "superdeed",
     "web": {
       "bundler": "metro",
       "output": "static",
