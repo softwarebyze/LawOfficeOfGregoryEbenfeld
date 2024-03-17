@@ -13,7 +13,7 @@ export default function Layout() {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       if (session) {
-        router.replace('/details');
+        router.replace('/documents');
       } else {
         console.log('no user');
       }
@@ -22,7 +22,7 @@ export default function Layout() {
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
       if (session) {
-        router.replace('/details');
+        router.replace('/documents');
       } else {
         console.log('no user');
         router.replace('/');
@@ -36,7 +36,7 @@ export default function Layout() {
     <AuthContext.Provider value={{ session, logOut }}>
       <Stack>
         <Stack.Screen name="index" />
-        <Stack.Screen name="details" />
+        <Stack.Screen name="documents" />
       </Stack>
     </AuthContext.Provider>
   );
