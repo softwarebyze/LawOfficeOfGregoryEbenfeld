@@ -3,7 +3,7 @@
     "name": "LawOfficeOfGregoryEbenfeld",
     "slug": "LawOfficeOfGregoryEbenfeld",
     "version": "1.0.0",
-    "scheme": "LawOfficeOfGregoryEbenfeld",
+    "scheme": "lawofficeofgregoryebenfeld",
     "web": {
       "bundler": "metro",
       "output": "static",
