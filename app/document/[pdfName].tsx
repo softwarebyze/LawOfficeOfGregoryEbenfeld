@@ -36,9 +36,7 @@ export default function Document() {
 
   return (
     <>
-      {pdfName && pdfBlobUrl && pdfBlob && (
-        <ShareButton blob={pdfBlob} filename={pdfName} url={pdfBlobUrl || ''} />
-      )}
+      {pdfName && pdfBlobUrl && pdfBlob && <ShareButton blob={pdfBlob} filename={pdfName} />}
 
       <Text>Document: {pdfName}</Text>
       {pdfBlobUrl && <PdfViewer url={pdfBlobUrl} />}
