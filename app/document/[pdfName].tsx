@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Text } from 'react-native';
 
 import { PdfViewer } from '~/components/PdfViewer';
+import { ShareButton } from '~/components/ShareButton';
 import { useAuth } from '~/contexts/AuthContext';
 import { supabase } from '~/utils/supabase';
 
@@ -32,6 +33,7 @@ export default function Document() {
 
   return (
     <>
+      <ShareButton url="google.com" />
       <Text>Document: {pdfName}</Text>
       {pdfBlobText && <PdfViewer url={pdfBlobText} />}
     </>
