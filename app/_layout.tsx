@@ -25,7 +25,6 @@ export default function Layout() {
         router.replace('/documents');
       } else {
         console.log('no user');
-        router.replace('/');
       }
     });
   }, []);
@@ -35,8 +34,8 @@ export default function Layout() {
   return (
     <AuthContext.Provider value={{ session, logOut }}>
       <Stack>
-        <Stack.Screen name="index" />
-        <Stack.Screen name="documents" />
+        <Stack.Screen name="index" redirect={!!session} />
+        <Stack.Screen name="documents" redirect={!session} />
       </Stack>
     </AuthContext.Provider>
   );
