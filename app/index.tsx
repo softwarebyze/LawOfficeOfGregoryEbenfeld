@@ -22,7 +22,7 @@ export default function Page() {
       <SafeAreaView className="flex-1 bg-white dark:bg-slate-800 items-center">
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
           <ScrollView
-            keyboardShouldPersistTaps="handled"
+            keyboardShouldPersistTaps="handled" // https://stackoverflow.com/a/52929552
             alwaysBounceVertical={false}
             className="relative">
             <Letterhead />
