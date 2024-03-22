@@ -19,9 +19,12 @@ export default function Page() {
   return (
     <>
       <Stack.Screen options={{ title: 'Login', headerShown: false }} redirect={!!session} />
-      <SafeAreaView className="flex-1 bg-white items-center">
+      <SafeAreaView className="flex-1 bg-white dark:bg-slate-800 items-center">
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-          <ScrollView alwaysBounceVertical={false} className="relative">
+          <ScrollView
+            keyboardShouldPersistTaps="handled"
+            alwaysBounceVertical={false}
+            className="relative">
             <Letterhead />
             <LoginForm onSubmit={logIn} />
           </ScrollView>

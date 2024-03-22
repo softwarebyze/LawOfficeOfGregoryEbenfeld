@@ -1,3 +1,4 @@
+import { Entypo } from '@expo/vector-icons';
 import * as FileSystem from 'expo-file-system';
 import * as Sharing from 'expo-sharing';
 import { Text, TouchableOpacity } from 'react-native';
@@ -16,7 +17,7 @@ const downloadAndSharePdf = async (filename: string, blob: Blob) => {
   fr.readAsDataURL(blob);
 };
 
-export function ShareButton({ filename, blob }: { filename: string; blob: Blob }) {
+export function SharePdfButton({ filename, blob }: { filename: string; blob: Blob }) {
   const handlePress = async () => {
     try {
       downloadAndSharePdf(filename, blob);
@@ -26,7 +27,8 @@ export function ShareButton({ filename, blob }: { filename: string; blob: Blob }
   };
 
   return (
-    <TouchableOpacity onPress={handlePress}>
+    <TouchableOpacity onPress={handlePress} className="justify-center items-center">
+      <Entypo name="share-alternative" size={24} color="black" />
       <Text>Share</Text>
     </TouchableOpacity>
   );

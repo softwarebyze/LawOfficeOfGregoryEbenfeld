@@ -1,9 +1,8 @@
-import { usePathname } from 'expo-router';
+import { Stack, usePathname } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { Text } from 'react-native';
 
 import { PdfViewer } from '~/components/PdfViewer';
-import { ShareButton } from '~/components/ShareButton';
+import { SharePdfButton } from '~/components/SharePdfButton';
 import { useAuth } from '~/contexts/AuthContext';
 import { supabase } from '~/utils/supabase';
 
@@ -36,9 +35,17 @@ export default function Document() {
 
   return (
     <>
-      {pdfName && pdfBlobUrl && pdfBlob && <ShareButton blob={pdfBlob} filename={pdfName} />}
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          title: pdfName,
+          headerRight: () =>
+            pdfName &&
+            pdfBlobUrl &&
+            pdfBlob && <SharePdfButton blob={pdfBlob} filename={pdfName} />,
+        }}
+      />
 
-      <Text>Document: {pdfName}</Text>
       {pdfBlobUrl && <PdfViewer url={pdfBlobUrl} />}
     </>
   );
