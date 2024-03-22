@@ -32,7 +32,10 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.zackebenfeld.LawOfficeOfGregoryEbenfeld"
+      "bundleIdentifier": "com.zackebenfeld.LawOfficeOfGregoryEbenfeld",
+      "infoPlist": {
+        "LSApplicationQueriesSchemes": ["mailto", "tel"]
+      }
     },
     "android": {
       "adaptiveIcon": {
