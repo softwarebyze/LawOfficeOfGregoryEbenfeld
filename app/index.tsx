@@ -1,6 +1,8 @@
 import { Stack } from 'expo-router';
-import { View } from 'react-native';
+import { KeyboardAvoidingView, Platform, SafeAreaView, ScrollView } from 'react-native';
 
+import Letterhead from '~/components/Letterhead';
+import { Links } from '~/components/Links';
 import { LoginForm } from '~/components/LoginForm';
 import { useAuth } from '~/contexts/AuthContext';
 import { supabase } from '~/utils/supabase';
@@ -15,20 +17,17 @@ export default function Page() {
   const { session } = useAuth();
 
   return (
-    <View className={styles.container}>
-      <Stack.Screen options={{ title: 'Login' }} redirect={!!session} />
-      <View className={styles.main}>
-        <LoginForm onSubmit={logIn} />
-      </View>
-    </View>
+    <>
+      <Stack.Screen options={{ title: 'Login', headerShown: false }} redirect={!!session} />
+      <SafeAreaView className="flex-1 bg-white items-center">
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+          <ScrollView alwaysBounceVertical={false} className="relative">
+            <Letterhead />
+            <LoginForm onSubmit={logIn} />
+          </ScrollView>
+        </KeyboardAvoidingView>
+        <Links className="absolute bottom-10 mx-auto" />
+      </SafeAreaView>
+    </>
   );
 }
-
-const styles = {
-  button: 'items-center bg-indigo-500 rounded-[28px] shadow-md p-4',
-  buttonText: 'text-white text-lg font-semibold text-center',
-  container: 'flex-1 p-6',
-  main: 'flex-1 max-w-[960] justify-between',
-  title: 'text-[64px] font-bold',
-  subtitle: 'text-4xl text-gray-700',
-};

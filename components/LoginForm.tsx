@@ -10,29 +10,28 @@ export const LoginForm = ({
   const [ssn, setSsn] = useState('');
 
   return (
-    <View
-      style={{
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 12,
-        margin: 'auto',
-      }}
-      className="">
-      <Text className="text-4xl">Login Form</Text>
+    <View className="items-center justify-center gap-12 m-auto my-10">
       <TextInput
         value={lastName}
         onChangeText={setLastName}
         placeholder="Last Name"
-        className="text-4xl"
+        className="text-4xl border-2 rounded-lg p-4 border-slate-600 w-3/4"
       />
-      <TextInput value={ssn} onChangeText={setSsn} placeholder="SSN" className="text-4xl" />
+      <TextInput
+        value={ssn}
+        onChangeText={setSsn}
+        placeholder="SSN"
+        className="text-4xl border-2 rounded-lg p-4 border-slate-600 w-3/4"
+      />
       <TouchableOpacity
+        disabled={!lastName || !ssn}
         onPress={() => onSubmit(lastName, ssn)}
-        className="border-4 border-blue-500 p-4">
-        <Text style={{ borderWidth: 3 }} className="text-4xl p-4">
-          Submit
-        </Text>
+        className="p-4 border-2 rounded-lg bg-slate-700 ">
+        <Text className="text-4xl border-3 p-4 text-white">Submit</Text>
       </TouchableOpacity>
+      <Text className="text-center text-slate-800 px-10">
+        Log in with your last name and social security number to view your documents
+      </Text>
     </View>
   );
 };

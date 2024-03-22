@@ -6,7 +6,8 @@
     "format": "bun run eslint \"**/*.{js,jsx,ts,tsx}\" --fix && prettier \"**/*.{js,jsx,ts,tsx,json}\" --write",
     "ios": "expo run:ios",
     "start": "expo start",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "css": "bunx tailwind -o output.css"
   },
   "dependencies": {
     "@config-plugins/react-native-blob-util": "^7.0.0",
