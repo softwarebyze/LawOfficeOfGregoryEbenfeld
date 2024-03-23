@@ -8,11 +8,14 @@ import { useAuth } from '~/contexts/AuthContext';
 import { supabase } from '~/utils/supabase';
 
 export default function Page() {
-  const logIn = async (lastName: string, ssn: string) =>
-    await supabase.auth.signInWithPassword({
+  const logIn = async (lastName: string, ssn: string) => {
+    const { data, error } = await supabase.auth.signInWithPassword({
       email: `${lastName.trim()}@superdeed.com`,
       password: ssn,
     });
+    console.log({ data, error });
+    if (error) alert(error.message);
+  };
 
   const { session } = useAuth();
 
