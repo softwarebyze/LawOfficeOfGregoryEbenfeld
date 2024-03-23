@@ -15,14 +15,14 @@ export const LoginForm = ({
         value={lastName}
         onChangeText={setLastName}
         placeholder="Last Name"
-        className="text-4xl border-2 rounded-lg p-4 border-slate-600 w-3/4"
+        className="text-4xl border-2 rounded-lg p-4 border-slate-600 w-3/4 dark:text-slate-50"
         autoComplete="username"
       />
       <TextInput
         value={ssn}
         onChangeText={setSsn}
         placeholder="SSN"
-        className="text-4xl border-2 rounded-lg p-4 border-slate-600 w-3/4"
+        className="text-4xl border-2 rounded-lg p-4 border-slate-600 w-3/4 dark:text-slate-50"
         autoComplete="password"
         secureTextEntry
       />
@@ -30,7 +30,7 @@ export const LoginForm = ({
         disabled={!lastName || !ssn}
         onPress={() => onSubmit(lastName, ssn)}
         className="p-4 border-2 rounded-lg bg-slate-700 dark:bg-slate-300">
-        <Text className="text-4xl border-3 p-4 text-white">Submit</Text>
+        <Text className="text-4xl border-3 p-4 text-white dark:text-slate-900">Submit</Text>
       </TouchableOpacity>
       <Text className="text-center text-slate-800 dark:text-slate-300 px-10">
         Log in with your last name and social security number to view your documents
